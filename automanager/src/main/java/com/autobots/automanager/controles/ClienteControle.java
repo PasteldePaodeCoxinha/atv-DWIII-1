@@ -27,8 +27,7 @@ public class ClienteControle {
 
 	@GetMapping("/cliente/{id}")
 	public Cliente obterCliente(@PathVariable long id) {
-		List<Cliente> clientes = repositorio.findAll();
-		return selecionador.selecionar(clientes, id);
+		return selecionador.selecionar(repositorio, id);
 	}
 
 	@GetMapping("/clientes")
