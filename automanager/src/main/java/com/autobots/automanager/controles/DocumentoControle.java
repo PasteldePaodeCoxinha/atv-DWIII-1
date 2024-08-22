@@ -50,7 +50,7 @@ public class DocumentoControle {
 	}
 
 	@DeleteMapping("/excluir")
-	public void excluirCliente(@RequestBody Documento exclusao) {
+	public void excluirEndereco(@RequestBody Documento exclusao) {
 		Documento documento = repositorio.getById(exclusao.getId());
 		repositorio.delete(documento);
 	}
