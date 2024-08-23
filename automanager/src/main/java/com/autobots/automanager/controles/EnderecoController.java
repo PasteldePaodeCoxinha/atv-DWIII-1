@@ -63,7 +63,7 @@ public class EnderecoController {
 	}
 	
 	@GetMapping("/cliente/{id}")
-	public Endereco pegarDocumentosCliente(@PathVariable long id){
+	public Endereco pegarEnderecoCliente(@PathVariable long id){
 		Cliente cliente = clienteSelecionador.selecionar(clienteRepositorio, id);
 		return cliente.getEndereco();
 	}
