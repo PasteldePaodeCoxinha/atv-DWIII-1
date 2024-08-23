@@ -12,9 +12,12 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.autobots.automanager.entidades.Cliente;
 import com.autobots.automanager.entidades.Documento;
+import com.autobots.automanager.modelo.ClienteSelecionador;
 import com.autobots.automanager.modelo.DocumentoAtualizador;
 import com.autobots.automanager.modelo.DocumentoSelecionador;
+import com.autobots.automanager.repositorios.ClienteRepositorio;
 import com.autobots.automanager.repositorios.DocumentoRepositorio;
 
 @RestController
@@ -24,6 +27,10 @@ public class DocumentoControle {
 	private DocumentoRepositorio repositorio;
 	@Autowired
 	private DocumentoSelecionador selecionador;
+	@Autowired
+	private ClienteRepositorio clienteRepositorio;
+	@Autowired
+	private ClienteSelecionador clienteSelecionador;
 
 	@GetMapping("/documento/{id}")
 	public Documento obterDocumento(@PathVariable long id) {
@@ -50,8 +57,14 @@ public class DocumentoControle {
 	}
 
 	@DeleteMapping("/excluir")
-	public void excluirEndereco(@RequestBody Documento exclusao) {
+	public void excluirDocumento(@RequestBody Documento exclusao) {
 		Documento documento = repositorio.getById(exclusao.getId());
 		repositorio.delete(documento);
+	}
+	
+	@GetMapping("/cliente/{id}")
+	public List<Documento> pegarDocumentosCliente(@PathVariable long id){
+		Cliente cliente = clienteSelecionador.selecionar(clienteRepositorio, id);
+		return cliente.getDocumentos();
 	}
 }
