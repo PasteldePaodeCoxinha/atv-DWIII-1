@@ -31,11 +31,11 @@ public class Cliente {
 	private Date dataNascimento;
 	@Column
 	private Date dataCadastro;
-	@OneToMany(orphanRemoval = true, cascade = CascadeType.ALL)
+	@OneToMany(cascade = CascadeType.ALL)
 	private List<Documento> documentos = new ArrayList<>();
-	@OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
+	@OneToOne(cascade = CascadeType.ALL)
 	private Endereco endereco;
-	@OneToMany(orphanRemoval = true, cascade = CascadeType.ALL)
+	@OneToMany(cascade = CascadeType.ALL)
 	private List<Telefone> telefones = new ArrayList<>();
 
 }

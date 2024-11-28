@@ -59,6 +59,8 @@ public class EnderecoController {
 	@DeleteMapping("/excluir")
 	public void excluirEndereco(@RequestBody Endereco exclusao) {
 		Endereco endereco = repositorio.getById(exclusao.getId());
+		Cliente cliente = clienteRepositorio.findByEndereco(endereco);
+		cliente.setEndereco(null);
 		repositorio.delete(endereco);
 	}
 	
